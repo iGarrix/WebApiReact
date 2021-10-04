@@ -60,7 +60,7 @@ namespace ContactListApi
 
             app.UseSpaStaticFiles();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
