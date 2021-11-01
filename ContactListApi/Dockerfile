@@ -1,3 +1,5 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -10,10 +12,10 @@ WORKDIR /app
 COPY . .
 RUN cd client-app/ && npm install && npm run-script build
 RUN cd client-app &&  pwd && ls -l
-WORKDIR /app/ContactListApi/build
-COPY .  ContactListApi/build
-RUN cd ..
-RUN dotnet restore "ContactList.csproj"
+WORKDIR /app/client-app/build
+COPY .  client-app/build
+WORKDIR /app
+RUN dotnet restore "ContactListApi.csproj"
 RUN cd client-app/build/  pwd && ls -l
 RUN dotnet build "ContactListApi.csproj" -c Release -o /app/build
 
