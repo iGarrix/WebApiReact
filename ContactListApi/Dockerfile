@@ -16,7 +16,6 @@ WORKDIR /app/client-app/build
 COPY .  client-app/build
 WORKDIR /app
 RUN dotnet restore "ContactListApi.csproj"
-RUN cd client-app/build/  pwd && ls -l
 RUN dotnet build "ContactListApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
